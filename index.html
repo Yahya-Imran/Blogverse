@@ -1,0 +1,40 @@
+<body>
+  <header>
+    <h1>📝 BlogVerse</h1>
+    <nav>
+      <input type="text" id="searchInput" placeholder="Search posts..." />
+      <button id="newPostBtn">➕ New Post</button>
+      <div id="filters">
+        <button class="filter-btn" data-category="all">All</button>
+        <button class="filter-btn" data-category="tech">Tech</button>
+        <button class="filter-btn" data-category="travel">Travel</button>
+        <button class="filter-btn" data-category="food">Food</button>
+        <button class="filter-btn" data-category="lifestyle">Lifestyle</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="blog-container"></main>
+
+  <div id="postModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Create New Post</h2>
+      <input type="text" id="postTitle" placeholder="Post title" />
+      <select id="postCategory">
+        <option value="tech">Tech</option>
+        <option value="travel">Travel</option>
+        <option value="food">Food</option>
+        <option value="lifestyle">Lifestyle</option>
+      </select>
+      <textarea id="postContent" placeholder="Your content here..."></textarea>
+      <button id="submitPost">Post</button>
+      <button id="closeModal">Cancel</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 BlogVerse. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
