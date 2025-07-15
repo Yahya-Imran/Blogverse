@@ -1,3 +1,9 @@
+function sanitizeHTML(str) {
+  const temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+}
+
 const categories = [
   { value: "morning-routines", label: "Morning Routines" },
   { value: "productivity", label: "Productivity Hacks" },
@@ -111,9 +117,10 @@ closeModal.addEventListener('click', () => {
 });
 
 submitPost.addEventListener('click', () => {
-  const title = document.getElementById('postTitle').value;
+  const title = sanitizeHTML(document.getElementById('postTitle').value);
   const category = document.getElementById('postCategory').value;
-  const content = document.getElementById('postContent').value;
+  const content = sanitizeHTML(document.getElementById('postContent').value);
+
 
   if (!title || !content) {
     alert('Please fill all fields.');
