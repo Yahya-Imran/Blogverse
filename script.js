@@ -128,6 +128,19 @@ submitPost.addEventListener('click', () => {
   document.getElementById('postContent').value = '';
 });
 renderFilterButtons();
+function populateCategoryDropdown() {
+  const postCategorySelect = document.getElementById('postCategory');
+  postCategorySelect.innerHTML = '';
+
+  categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat.value;
+    option.textContent = cat.label;
+    postCategorySelect.appendChild(option);
+  });
+}
+populateCategoryDropdown();
+
 // First load
 renderPosts();
 document.addEventListener('click', (e) => {
