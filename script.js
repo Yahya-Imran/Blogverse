@@ -82,10 +82,11 @@ function renderPosts(filter = 'all', search = '') {
     const postEl = document.createElement('div');
     postEl.classList.add('blog-post');
     postEl.innerHTML = `
-      <h2>${post.title}</h2>
-      <p><strong>Category:</strong> ${post.category}</p>
-      <p>${post.content}</p>
-    `;
+  <h2 class="clickable-title" data-index="${index}">${post.title}</h2>
+  <p><strong>Category:</strong> ${post.category}</p>
+  <p>${post.content.slice(0, 100)}...</p>
+  <button class="read-more" data-index="${index}">Read More</button>
+`;
     blogContainer.appendChild(postEl);
   });
 }
@@ -147,5 +148,19 @@ document.addEventListener('click', (e) => {
   if (e.target.classList.contains('filter-btn')) {
     const cat = e.target.getAttribute('data-category');
     renderPosts(cat, searchInput.value);
+  }
+});
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('read-more') || e.target.classList.contains('clickable-title')) {
+    const index = e.target.getAttribute('data-index');
+    const post = blogPosts[index];
+    document.getElementById('readPostTitle').textContent = post.title;
+    document.getElementById('readPostCategory').innerHTML = `<strong>Category:</strong> ${post.category}`;
+    document.getElementById('readPostContent').textContent = post.content;
+    document.getElementById('readPostModal').classList.remove('hidden');
+  }
+
+  if (e.target.id === 'closeReadModal') {
+    document.getElementById('readPostModal').classList.add('hidden');
   }
 });
