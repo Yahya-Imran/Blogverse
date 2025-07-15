@@ -28,12 +28,12 @@ header h1 {
 
 /* Navigation Bar */
 nav {
-  margin-top: 1rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
 
 nav #searchInput {
@@ -67,7 +67,12 @@ nav #searchInput:focus {
 
 #filters {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem;
 }
 
 .filter-btn {
