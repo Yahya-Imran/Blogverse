@@ -1,3 +1,50 @@
+const categories = [
+  { value: "morning-routines", label: "Morning Routines" },
+  { value: "productivity", label: "Productivity Hacks" },
+  { value: "procrastination", label: "Procrastination Tips" },
+  { value: "mindset", label: "Positive Mindset" },
+  { value: "goals", label: "Goal Setting" },
+  { value: "meal-prep", label: "Meal Prep" },
+  { value: "fasting", label: "Intermittent Fasting" },
+  { value: "workouts", label: "Home Workouts" },
+  { value: "sleep", label: "Sleep Better" },
+  { value: "stress", label: "Stress Relief" },
+  { value: "budgeting", label: "Budgeting" },
+  { value: "side-hustles", label: "Side Hustles" },
+  { value: "investing", label: "Investing Basics" },
+  { value: "grocery", label: "Grocery Savings" },
+  { value: "debt", label: "Debt Freedom" },
+  { value: "productivity-apps", label: "Productivity Apps" },
+  { value: "privacy", label: "Online Privacy" },
+  { value: "ai", label: "AI Tools" },
+  { value: "smart-homes", label: "Smart Homes" },
+  { value: "coding", label: "Coding Basics" },
+  { value: "travel", label: "Budget Travel" },
+  { value: "packing", label: "Packing Tips" },
+  { value: "solo-travel", label: "Solo Travel" },
+  { value: "minimalism", label: "Minimalism" }
+];
+const filtersContainer = document.getElementById("filters");
+
+function renderFilterButtons() {
+  filtersContainer.innerHTML = '';
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'filter-btn';
+  allBtn.dataset.category = 'all';
+  allBtn.textContent = 'All';
+  filtersContainer.appendChild(allBtn);
+
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.category = cat.value;
+    btn.textContent = cat.label;
+    filtersContainer.appendChild(btn);
+  });
+}
+
+
 const blogContainer = document.getElementById('blog-container');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const searchInput = document.getElementById('searchInput');
@@ -80,6 +127,12 @@ submitPost.addEventListener('click', () => {
   document.getElementById('postTitle').value = '';
   document.getElementById('postContent').value = '';
 });
-
+renderFilterButtons();
 // First load
 renderPosts();
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('filter-btn')) {
+    const cat = e.target.getAttribute('data-category');
+    renderPosts(cat, searchInput.value);
+  }
+});
